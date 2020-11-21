@@ -55,3 +55,7 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+1-Spring-Initializr/.mvn/wrapper/maven-wrapper.jar
+1-Spring-Initializr/.mvn/wrapper/maven-wrapper.jar
+1-Spring-Initializr/.mvn/wrapper/maven-wrapper.properties
+1-Spring-Initializr/.mvn/wrapper/MavenWrapperDownloader.java
