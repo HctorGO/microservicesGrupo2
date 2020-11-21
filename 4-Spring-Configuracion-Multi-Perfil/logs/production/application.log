@@ -1,0 +1,7 @@
+2020-11-21 14:09:33.342  INFO 18352 --- [main] m.o.c.s.p.test.profiles.ProfilesTest     : Starting ProfilesTest on LAPTOP-CCMUOD0A with PID 18352 (started by hgore in D:\Documentos\Proyectos\Cursos\microservices\ws-curso-microservicios-sc\4-Spring-Configuracion-Multi-Perfil)
+2020-11-21 14:09:33.344  INFO 18352 --- [main] m.o.c.s.p.test.profiles.ProfilesTest     : The following profiles are active: production
+2020-11-21 14:09:35.639  INFO 18352 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-21 14:09:36.164  INFO 18352 --- [main] m.o.c.s.p.test.profiles.ProfilesTest     : Started ProfilesTest in 3.424 seconds (JVM running for 4.86)
+2020-11-21 14:09:36.467  INFO 18352 --- [main] m.o.c.s.p.test.profiles.ProfilesTest     : profilesTest [START] ------------------------
+2020-11-21 14:09:36.469  INFO 18352 --- [main] m.o.c.s.p.p.bean.ConnectionDataBase      : Connected to: jdbc://production2-server:3306/myapp_db
+2020-11-21 14:09:36.486  INFO 18352 --- [Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

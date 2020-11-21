@@ -14,6 +14,7 @@ public class ConnectionDataBase {
 	private DummyDataSource datasource;
 
 	// define propiedad myapp.connection.url
+	@Value("${myapp.connection.url}")
 	private String connectionURL;
 
 	public ConnectionDataBase(DummyDataSource ds) {

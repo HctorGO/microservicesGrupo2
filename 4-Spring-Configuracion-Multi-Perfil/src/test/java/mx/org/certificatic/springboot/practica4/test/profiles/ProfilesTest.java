@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,7 @@ import mx.org.certificatic.springboot.practica4.profiles.bean.api.DummyDataSourc
 @Slf4j
 @SpringBootTest
 @RunWith(SpringRunner.class) // Needed for JUnit 4
-//@ActiveProfiles("production")
+@ActiveProfiles("production")
 public class ProfilesTest {
 
 	@Autowired // Just one bean definition, no ambiguity

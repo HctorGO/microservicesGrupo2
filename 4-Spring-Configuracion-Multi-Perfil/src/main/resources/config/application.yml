@@ -1,0 +1,32 @@
+#A comment
+spring:
+  profiles:
+    active: dev    
+---
+spring:
+  profiles: dev
+
+myapp:
+  connection:
+    url: jdbc://dev-server:3306/myapp_db 
+---
+spring:
+  profiles: qa
+
+myapp:
+  connection:
+    url: jdbc://dev-server:3306/myapp_db
+---
+spring:
+  profiles: staging
+
+myapp:
+  connection:
+    url: jdbc://staging-server:3306/myapp_db
+---
+spring:
+  profiles: production
+
+myapp:
+  connection:
+    url: jdbc://production-server:3306/myapp_db
