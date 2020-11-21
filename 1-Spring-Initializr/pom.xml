@@ -6,7 +6,6 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.6.RELEASE</version>
-		<name>1-Spring-Initializr</name>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>mx.org.certificatic.springboot</groupId>
