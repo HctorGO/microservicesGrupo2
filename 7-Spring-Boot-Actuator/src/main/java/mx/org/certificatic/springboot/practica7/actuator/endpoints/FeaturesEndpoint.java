@@ -12,7 +12,8 @@ import org.springframework.stereotype.Component;
 
 import mx.org.certificatic.springboot.practica7.appconfig.Feature;
 
-
+@Component
+@Endpoint(id = "features")
 // define bean component
 // define endpoint actuator "features"
 public class FeaturesEndpoint {
@@ -20,21 +21,25 @@ public class FeaturesEndpoint {
 	@Autowired
 	private Map<String, Feature> features;
 
+	@ReadOperation
 	// operacion de lectura
 	public Map<String, Feature> features() {
 		return features;
 	}
 
+	@ReadOperation
 	// operacion de lectura
 	public Feature feature(@Selector String name) {
 		return features.get(name);
 	}
 
+	@WriteOperation
 	// operacion de escritura
 	public void configureFeature(@Selector String name, boolean enabled) {
 		features.put(name, Feature.builder().name(name).enabled(enabled).build());
 	}
 
+	@DeleteOperation
 	// operacion de borrado
 	public void deleteFeature(@Selector String name) {
 		features.remove(name);
