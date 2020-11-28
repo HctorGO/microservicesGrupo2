@@ -54,7 +54,7 @@ $(document).ready(function(){
 		if(validateUserForm(new_user)){
 		
 			$.ajax({
-				url: USER_API_BASE_PATH+"/users",
+				url: USER_API_BASE_PATH+"/usuarios",
 				method: "POST",
 				contentType: "application/json; charset=UTF-8",
 				dataType: "json",

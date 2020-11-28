@@ -44,7 +44,7 @@ $(document).ready(function(){
 	
 	var retrieveUser = function(userId){
 		$.ajax({
-			url: USER_API_BASE_PATH+"/users/"+userId,
+			url: USER_API_BASE_PATH+"/usuarios/"+userId,
 			success: function( result ) {
 				$("#name").val(result.name);
 				$("#email").val(result.email);
@@ -60,6 +60,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		
 		var updated_user = {
+			id: userId_from_pathname,
 			name: $("#name").val().trim(),
 			email: $("#email").val().trim()
 		}
@@ -67,7 +68,7 @@ $(document).ready(function(){
 		if(validateUserForm(updated_user)){
 		
 			$.ajax({
-				url: USER_API_BASE_PATH+"/users/"+userId_from_pathname,
+				url: USER_API_BASE_PATH+"/usuarios/"+userId_from_pathname,
 				method: "PUT",
 				contentType: "application/json; charset=UTF-8",
 				dataType: "json",

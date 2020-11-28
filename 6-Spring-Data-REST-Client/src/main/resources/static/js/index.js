@@ -23,7 +23,7 @@ $(document).ready(function(){
 	var deleteUser = function(userId){
 		
 		$.ajax({
-			url: USER_API_HOST+USER_API_BASE_PATH+"/users/"+userId,
+			url: USER_API_HOST+USER_API_BASE_PATH+"/usuarios/"+userId,
 			method: "DELETE",
 			success: function( result ) {
 				loadUsers(0, page_size);
@@ -76,7 +76,7 @@ $(document).ready(function(){
 	var loadUsers = function(page, size){
 		
 		$.ajax({
-			url: USER_API_HOST+USER_API_BASE_PATH+"/users?page="+page+"&size="+size,
+			url: USER_API_HOST+USER_API_BASE_PATH+"/usuarios?page="+page+"&size="+size,
 			data: {
 				
 			},
@@ -87,7 +87,7 @@ $(document).ready(function(){
 				}else {
 					$("#no_users").hide();
 					$("#have_users").show();
-					printUsers(result._embedded.users);
+					printUsers(result._embedded.amigos);
 					printNavigation(result.page);
 				}
 				
