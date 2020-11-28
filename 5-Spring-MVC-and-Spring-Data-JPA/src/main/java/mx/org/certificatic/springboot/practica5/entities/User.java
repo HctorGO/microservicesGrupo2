@@ -14,8 +14,21 @@ import lombok.NoArgsConstructor;
 // entidad
 // constructor sin argumentos
 // constructor con argumentos
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
 	// atributos
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long id;
+	
+	@NotBlank(message = "Name is mandatory")
+	private String name;
+	
+	@NotBlank(message = "Email is mandatory")
+	private String email;
+	
 }

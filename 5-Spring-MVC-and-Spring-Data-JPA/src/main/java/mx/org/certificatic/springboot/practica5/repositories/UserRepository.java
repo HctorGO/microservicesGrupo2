@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 import mx.org.certificatic.springboot.practica5.entities.User;
 
 // repositorio
-public interface UserRepository {
+@Repository
+public interface UserRepository extends JpaRepository<User, Long>{
+	
 	// define query method
+	List<User> findByName(String name);
+	
 }
