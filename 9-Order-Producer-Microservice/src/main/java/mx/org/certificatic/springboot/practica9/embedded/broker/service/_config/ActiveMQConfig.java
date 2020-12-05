@@ -10,10 +10,12 @@ import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
 
 // Habilita JMS
+@EnableJms
 @Configuration
 public class ActiveMQConfig {
 
 	// Define constante ORDER_QUEUE
+	public static final String ORDER_QUEUE = "order-queue";
 
 	@Bean
 	public JmsListenerContainerFactory<?> queueListenerFactory() {

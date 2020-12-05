@@ -10,12 +10,16 @@ import mx.org.certificatic.springboot.practica9.embedded.broker.service.model.Or
 
 @Slf4j
 // Define como Bean de Servicio
+@Service
 public class OrderProducer {
 
 	// Injecta JMS Template
+	@Autowired
+	private JmsTemplate jmsTemplate;
 
 	public void send(Order order) {
-		log.info("sending order {} to queue {}.", order.getId(), /* Cola ORDER_QUEUE */ null);
+		log.info("sending order {} to queue {}.", order.getId(), ActiveMQConfig.ORDER_QUEUE);
 		// Envia el mensaje order mediante jms template a la cola ORDER_QUEUE
+		jmsTemplate.convertAndSend(ActiveMQConfig.ORDER_QUEUE, order);
 	}
 }

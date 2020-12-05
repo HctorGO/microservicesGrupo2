@@ -15,11 +15,14 @@ import mx.org.certificatic.springboot.practica9.embedded.broker.service.model.Or
 
 @Slf4j
 // Define como Bean
+@Component
 public class OrderConsumer {
 
 	// Define JMS Listener que escuche la queue destino ORDER_QUEUE
-	public void receiveMessage(Order order, MessageHeaders headers, Message message, Session session) {
-		log.info("received <" + order.getId() + ">");
+	@JmsListener(destination = ActiveMQConfig.ORDER_QUEUE)
+	public void receiveMessage(@Payload Order order, @Headers MessageHeaders headers, 
+							   Message message, Session session) {
+		log.info("received <" + order.getId() + ">: {}", order);
 
 		log.info("- - - - - - - - - - - - - - - - - - - - - - - -");
 		log.info("######          Message Details           #####");
