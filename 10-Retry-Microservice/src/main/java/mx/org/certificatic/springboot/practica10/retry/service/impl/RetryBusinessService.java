@@ -10,14 +10,23 @@ import mx.org.certificatic.springboot.practica10.retry.service.exception.Service
 public abstract class RetryBusinessService implements IBusinessService {
 
 	// Define propiedad Target Object
-
-	private final int maxAttempts = 0;
-	private final long delay = 0;
-	private final AtomicInteger attempts = null;
+	private final IBusinessService proxiesBusinessService;
+	private final int maxAttempts;
+	private final long delay;
+	private final AtomicInteger attempts;
 
 	// Inyecta propiedades por constructor excepto attempts, en el constructor
 	// inicializa el atomic integer.
+	public RetryBusinessService(IBusinessService proxiesBusinessService, int maxAttempts, int delay) {
+		this.proxiesBusinessService = proxiesBusinessService;
+		this.maxAttempts = maxAttempts;
+		this.delay = delay;
+		this.attempts = new AtomicInteger();
+	}
 	
+	public int attempts() {
+		return this.attempts.intValue();
+	}
 
 	// Define metodo attempts
 

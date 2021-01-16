@@ -17,18 +17,26 @@ import mx.org.certificatic.springboot.practica13.compensatingtransactions.ticket
 
 @Slf4j
 // Defina Bean
+@Component
 public class CheckoutQueueListener {
 
 	// Inyecte TicketsMicroserviceQueueProducer ticketsMicroserviceQueueProducer;
-
+	
+	@Autowired
+	private TicketsMicroserviceQueueProducer ticketsMicroserviceQueueProducer;
+	
 	private boolean reservationCheckoutWithdrawal = true;
 
 	// Defina JMS Listener de queue
 	// CheckoutMicroserviceQueues.RESERVE_WITHDRAWAL_QUEUE
+	@JmsListener(destination = CheckoutMicroserviceQueues.RESERVE_WITHDRAWAL_QUEUE)
 	public void applyReserveWithdrawal(@Payload ReservationCheckoutWithdrawalEvent reservationEvent,
 			@Headers MessageHeaders headers, Message message, Session session) {
 
 		// Implemente
+		
+		
+		
 	}
 
 	private boolean successReservationCheckoutWithdrawal() {

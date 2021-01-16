@@ -14,11 +14,28 @@ public class MessageQueue {
 	public void submitMessage(Message message) {
 
 		// implementa
+		try {
+			if(message != null) {
+				blockingQueue.add(message);
+			}
+		} catch(Exception e) {
+			log.error(e.getMessage());
+		}
+		
+		log.info("elements in queue {}" , blockingQueue.size());
 	}
 
 	public Message retrieveMessage() {
 		
 		// Implementa
-		return null;
+		Message message = null;
+		try {
+			message = blockingQueue.poll();
+		} catch(Exception e) {
+			log.error(e.getMessage());
+		}
+		log.info("elements in queue {}" , blockingQueue.size());
+		
+		return message;
 	}
 }

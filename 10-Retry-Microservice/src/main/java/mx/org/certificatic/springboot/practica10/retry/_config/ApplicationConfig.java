@@ -14,12 +14,22 @@ import mx.org.certificatic.springboot.practica10.retry.service.impl.RetryBusines
 public class ApplicationConfig {
 
 	// Define Bean Rest template
-
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+	
 	// Inyecta propiedad String failingServiceURL
-
+	@Value("${falling.service.url}")
+	private String fallingServiceURL;
+	
 	// Define Bean IBusinessService noRetriableBusinessService
 	// de tipo concreto BusinessService
-
+	@Bean
+	IBusinessService noRetriableBusinessService() {
+		return new BusinessService(restTemplate(), fallingServiceURL);
+	}
+	
 	// Define Bean IBusinessService retriableBusinessService
 	// de tipo concreto RetryBusinessService
 

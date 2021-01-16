@@ -11,21 +11,34 @@ import mx.org.certificatic.springboot.practica11.circuitbreaker.service.exceptio
 public class CircuitBreakerBusinessService implements IBusinessService {
 
 	// Defina Target object IBusinessService businessService
-
+	private IBusinessService proxiedBusinessService;
+	
 	// Defina propiedad Circuit Breaker
+	private CircuitBreaker circuitBreaker;
 
 	// Defina propiedad Supplier<StatusResponse> decoratedSupplier
-
+	private Supplier<StatusResponse> decoretedSupplier; 
+	
 	// Inyecte por constructor propiedades IBusinessService businessService, CircuitBreaker circuitBreaker
 	// En el constructor decore el Supplier mediante CircuitBreaker.decorateSupplier(this.circuitBreaker, this.businessService::perform);
-
+	public CircuitBreakerBusinessService() {
+		this.proxiedBusinessService = proxiedBusinessService;
+		this.circuitBreaker = circuitBreaker;
+		this.decoretedSupplier = CircuitBreaker.decorateSupplier(this.circuitBreaker, this.proxiedBusinessService::perform);
+	}
+	
 	@Override
 	public StatusResponse perform() throws ServiceException {
 		
 		// implemente
-		return null;
+		return Try.ofSupplier(this.decoretedSupplier)
+				.recover(this::fallback)
+				.get();
 	}
 
 	// Defina metodo fallback
-
+	public StatusResponse fallback(Throwable ex) {
+		return new StatusResponse(200, "DEFAULT RESPONSE");
+	}
+	
 }

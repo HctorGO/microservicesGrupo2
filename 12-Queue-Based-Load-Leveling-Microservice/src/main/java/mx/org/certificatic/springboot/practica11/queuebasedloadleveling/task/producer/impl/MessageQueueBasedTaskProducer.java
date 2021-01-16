@@ -9,7 +9,21 @@ import mx.org.certificatic.springboot.practica11.queuebasedloadleveling.task.ITa
 
 @Slf4j
 // Elimina abstract
-public abstract class MessageQueueBasedTaskProducer implements ITaskProducer, Runnable {
+public class MessageQueueBasedTaskProducer implements ITaskProducer, Runnable {
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void produce(Message message) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// Implementa
+	
+	
 }

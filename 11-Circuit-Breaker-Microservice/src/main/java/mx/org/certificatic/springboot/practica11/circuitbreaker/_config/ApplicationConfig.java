@@ -22,23 +22,55 @@ import mx.org.certificatic.springboot.practica11.circuitbreaker.service.impl.Cir
 public class ApplicationConfig {
 
 	// Define Bean Rest template
-
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+	
 	// Inyecta propiedad String failingServiceURL
-
+	@Value("${failing.service.url}")
+	private String failingServiceUrl; 
+	
 	// Define Bean IBusinessService noCircuitBreakerBusinessService
 	// de tipo concreto BusinessService
-
-	
+	@Bean
+	public IBusinessService noCircuitBreakerBusinessService() {
+		return new BusinessService(restTemplate(), failingServiceUrl);
+	}
 	
 	// Defina Bean CircuitBreakerConfig circuitBreakerConfig
+	@Bean
+	public CircuitBreakerConfig circuitBreakerConfig() {
+		CircuitBreakerConfig circuitBreakerConfig = CircuitBreakerConfig.custom()
+				.failureRateThreshold(50)
+				.waitDurationInOpenState(Duration.ofMillis(5000))
+				.ringBufferSizeInHalfOpenState(2)
+				.ringBufferSizeInClosedState(2)
+				.recordExceptions(IOException.class, TimeoutException.class, FailingServiceException.class)
+				.build();
+				
+		return circuitBreakerConfig;
+	}
 	
 	// Defina Bean CircuitBreakerRegistry circuitBreakerRegistry
+	@Bean
+	public CircuitBreakerRegistry circuitBreakerRegistry() {
+		return CircuitBreakerRegistry.of(circuitBreakerConfig());
+	}
 	
 	// Defina Bean CircuitBreaker circuitBreaker
+	@Bean
+	public CircuitBreaker circuitBreaker() {
+		return circuitBreakerRegistry().circuitBreaker("my-circuit-breacker");
+	}
 	
 	// Define Bean IBusinessService circuitBreakerBusinessService
 	// de tipo concreto CircuitBreakerBusinessService
-
+	@Bean
+	@Primary
+	public IBusinessService circuitBusinessService() {
+		return new CircuitBreakerBusinessService();
+	}
 
 
 }

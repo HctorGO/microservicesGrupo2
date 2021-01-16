@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 // Define Bean Rest Controller
+@RestController
 @SpringBootApplication
 public class Application {
 
@@ -16,4 +17,8 @@ public class Application {
 
 	// Define handler method "/"
 
+	@GetMapping("/")
+	public ResponseEntity<StatusResponse> getResponse() {
+		return ResponseEntity.ok(new StatusResponse(200 , "UP"));
+	}
 }

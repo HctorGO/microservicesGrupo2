@@ -10,15 +10,26 @@ import mx.org.certificatic.springboot.practica11.queuebasedloadleveling.service.
 
 @Slf4j
 // Define Rest Controller
+@RestController
 public class TaskController {
 
 	// Inyecta ITaskService
-
+	@Autowired
+	private ITaskService taskService;
+	
 	@GetMapping("/{triggeredTasks}")
 	public String getResponse(@PathVariable int triggeredTasks) {
 
+		long startTime = System.nanoTime();
+		String response = taskService.triggerTasks(triggeredTasks);
+		long elaspsedtime = System.nanoTime() - startTime;
+		
+		String elapsedTimeText = String.format("elapsed tome %s sec.", (double) elaspsedtime / 1_000_000_000);
+		
+		log.info("{}" , elapsedTimeText);
+		
 		// Implementa
-		return null;
+		return response + ", " + elapsedTimeText;
 	}
 
 }

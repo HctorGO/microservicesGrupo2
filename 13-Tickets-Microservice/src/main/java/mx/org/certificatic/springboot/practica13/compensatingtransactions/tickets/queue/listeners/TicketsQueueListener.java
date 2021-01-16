@@ -18,6 +18,7 @@ import mx.org.certificatic.springboot.practica13.compensatingtransactions.ticket
 
 @Slf4j
 // Define Bean
+@Component
 public class TicketsQueueListener {
 
 	@Autowired
@@ -28,12 +29,27 @@ public class TicketsQueueListener {
 	private boolean ticketReservationCompensation = true;
 
 	// Define JMS Listener de queue TicketsMicroserviceQueues.TICKET_RESERVATION_QUEUE
+	@JmsListener(destination = TicketsMicroserviceQueues.TICKET_RESERVATION_QUEUE)
 	public void ticketReservation(@Payload TicketReservationEvent reservationEvent,
 			@Headers MessageHeaders headers,
 			Message message,
 			Session session) {
 
 		// Implementa
+		
+		log.info("---");
+		
+		log.info("[Tickets Microservice] appling 'ticket reservation envent' for ticket order Id {}" , reservationEvent.getTicketOrderId());
+	
+		if(!successTicketReservation()) {
+			log.info("[Ticket Reservation] 'ticket reservation envent id {}'" , reservationEvent.getTicketOrderId());
+		} else {
+			log.info("[Ticket Reservation] 'ticket reservation envent id {}'" , reservationEvent.getTicketOrderId());
+			
+			checkoutMicroserviceQueueProducer.reservationCheckoutWithdrawal
+			(reservationEvent.getUser(), reservationEvent.getTicketOrderId(), reservationEvent.getTotal(), "1234-5678");
+		}
+		
 	}
 
 	// Define JMS Listener de queue TicketsMicroserviceQueues.CANCEL_TICKET_RESERVATION_QUEUE
@@ -43,6 +59,17 @@ public class TicketsQueueListener {
 			Session session) {
 
 		// Implementa
+		
+		log.info("---");
+		
+		log.info("id {}" , TicketsMicroserviceQueues.CANCEL_TICKET_RESERVATION_QUEUE);
+		
+		if(!successTicketReservationCompensation()) {
+			log.info("id {}" , reservationEvent.getTicketOrderId());
+		} else {
+			log.info("sucess id {}" , reservationEvent.getTicketOrderId());
+		}
+		
 	}
 
 	private boolean successTicketReservation() {
