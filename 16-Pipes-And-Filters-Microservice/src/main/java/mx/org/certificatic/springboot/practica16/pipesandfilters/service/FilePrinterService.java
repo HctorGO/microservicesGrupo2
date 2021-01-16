@@ -16,7 +16,17 @@ public class FilePrinterService {
 	public File print(File file, Map<String, String> headers) {
 
 		// Implementa
+		log.info("headers: {}", headers);
 		
-		return null;
+		@Cleanup
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		
+		String linea = null;
+		
+		while((linea = br.readLine()) != null) {
+			log.info(linea);
+		}
+		
+		return file;
 	}
 }
