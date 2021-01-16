@@ -16,21 +16,29 @@ public class SystemController {
 	@GetMapping("/recover/transactions")
 	public String recover() {
 
+		AccountHolder.resetState();
+		
+		domainEventProcessor.recover();
+		
 		// Implementa
-		return null;
+		return "System recoverd!";
 	}
 
 	@GetMapping("/reset/soft/transactions")
 	public String softReset() {
 
+		AccountHolder.resetState();
+		
 		// Implementa
-		return null;
+		return "System had soft reset";
 	}
 
 	@GetMapping("/reset/hard/transactions")
 	public String hardReset() {
 
+		AccountHolder.resetState();
+		domainEventProcessor.reset();
 		// Implementa
-		return null;
+		return "System had hard reset";
 	}
 }

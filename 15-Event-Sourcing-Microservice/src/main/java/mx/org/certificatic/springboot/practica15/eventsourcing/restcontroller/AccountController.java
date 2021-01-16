@@ -28,34 +28,61 @@ public class AccountController {
 	public Map<Integer, Account> accounts() {
 
 		// Implementa
-		return null;
+		return AccountHolder.getAll();
 	}
 
 	@GetMapping("/{tenant}")
 	public Account accountOf(@PathVariable String tenant) {
 
 		// Implementa
-		return null;
+		return AccountHolder.getAccount(tenant);
 	}
 
 	@GetMapping("/{tenant}/create")
 	public String createAccountOf(@PathVariable String tenant) {
 
-		// Implementa
-		return null;
+		AccountCreateEvent newAccountEvent = new AccountCreateEvent(
+				AccountHolder.nextEventId(),
+				new Date().getTime(),
+				AccountHolder.nextAccountId(),
+				tenant);
+
+		domainEventProcessor.process(newAccountEvent);
+		
+		Account tenantAccount = AccountHolder.getAccount(tenant);
+		
+		if(tenantAccount == null) {
+			return "Cannot: " + tenant;
+		} else return tenant + " account created";
 	}
 
 	@GetMapping("/{tenant}/deposit/{amount}")
 	public String accountDeposit(@PathVariable String tenant, @PathVariable BigDecimal amount) {
 
-		// Implementa
-		return null;
+		Account tenantAccount = AccountHolder.getAccount(tenant);
+		
+		if(tenantAccount != null) {
+			MoneyDepositEvent money = new MoneyDepositEvent(AccountHolder.nextEventId(), new Date().getTime(), tenantAccount.getAccountNo(), amount);
+			
+			domainEventProcessor.process(money);
+			return tenant + " deposit done !";
+		}
+		
+		return tenant + " account doest exists";
 	}
 
 	@GetMapping("/{tenant}/withdrawal/{amount}")
 	public String accountWithdrawal(@PathVariable String tenant, @PathVariable BigDecimal amount) {
 
-		// Implementa
-		return null;
+		Account tenantAccount = AccountHolder.getAccount(tenant);
+		
+		if(tenantAccount != null) {
+			MoneyWithdrawalEvent money = new MoneyWithdrawalEvent(AccountHolder.nextEventId(), new Date().getTime(), tenantAccount.getAccountNo(), amount);
+			
+			domainEventProcessor.process(money);
+			return tenant + " Withdrawal done !";
+		}
+		
+		return tenant + " account doest exists";
 	}
 }

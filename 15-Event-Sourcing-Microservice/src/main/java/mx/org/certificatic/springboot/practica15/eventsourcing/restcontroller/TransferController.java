@@ -27,7 +27,19 @@ public class TransferController {
 			@PathVariable BigDecimal amount) {
 
 		// Implementa
+		Account tenantAccountFrom = AccountHolder.getAccount(tenantFrom);
+		Account tenantAccountTo = AccountHolder.getAccount(tenantTo);
 		
-		return null;
+		if(tenantAccountFrom != null && tenantAccountTo != null) {
+			MoneyTransferEvent to = new MoneyTransferEvent(AccountHolder.nextEventId(), new Date().getTime(), tenantAccountFrom.getAccountNo(), amount, tenantAccountTo.getAccountNo());
+			MoneyTransferEvent from = new MoneyTransferEvent(AccountHolder.nextEventId(), new Date().getTime(), tenantAccountFrom.getAccountNo(), amount, tenantAccountTo.getAccountNo());
+			
+			domainEventProcessor.process(to);
+			domainEventProcessor.process(from);
+			
+			return "procesado";
+		}
+		
+		return "no procesado";
 	}
 }
