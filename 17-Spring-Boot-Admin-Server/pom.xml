@@ -20,6 +20,12 @@
 	</properties>
 
 	<dependencies>
+	<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-server</artifactId>
+			<version>2.1.5</version>
+		</dependency>
+		
 		<!-- enable spring boot admin starter server -->
 		<!-- <dependency>
 			<groupId>de.codecentric</groupId>
