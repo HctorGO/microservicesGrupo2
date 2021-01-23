@@ -23,14 +23,19 @@ public class UserCreatedLogRabbitListener {
 
 	@SneakyThrows
 	// Defina listener RabbitListener
+	@RabbitListener(queues = {"#{userCreatedLogQueue.name}"})
 	public void handleUserCreatedEvent(String message) {
 		log.info("rabbit listener User Created Log Event");
 		// Recupere objeto User
 		
+		User user = objectMapper.readValue(message, User.class);
+		
 		// log.info("event: {}", user);
-
+		log.info("event: {}", user);
+		
 		// Almacene objeto User
-
+		userLogRepository.save(user);
+		
 		log.info("--------------------------------------------------------------");
 	}
 }

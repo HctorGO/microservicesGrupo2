@@ -16,7 +16,9 @@ import mx.org.certificatic.springboot.practica19.account.user.events.UserCreated
 public class UserCreatedRabbitListener {
 
 	// Inyecte Bean ApplicationEventPublisher publisher
-
+	@Autowired
+	private ApplicationEventPublisher publisher;
+	
 	@Autowired
 	private ObjectMapper objectMapper;
 
@@ -29,6 +31,7 @@ public class UserCreatedRabbitListener {
 		log.info("publishing User Created Event (from Account)");
 
 		// Implemente envio de evento UserCreatedEvent
+		publisher.publishEvent(uce);
 		
 		log.info("--------------------------------------------------------------");
 	}

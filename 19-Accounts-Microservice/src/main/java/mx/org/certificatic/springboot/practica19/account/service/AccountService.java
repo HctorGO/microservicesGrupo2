@@ -17,7 +17,9 @@ public class AccountService {
 	private AccountRepository accountRepository;
 
 	// Inyecte la dependencia faltante
-
+	@Autowired
+	private ApplicationEventPublisher publisher;
+	
 	public void createAccount(Account account) {
 
 		log.info("create account service start");
@@ -27,5 +29,7 @@ public class AccountService {
 		log.info("publishing Account Created Event");
 		
 		// Implemente la logica faltante
+		
+		publisher.publishEvent(AccountCreatedEventBuilder.build(account));
 	}
 }
