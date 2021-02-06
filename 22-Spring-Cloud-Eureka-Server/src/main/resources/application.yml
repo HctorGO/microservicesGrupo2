@@ -1,0 +1,32 @@
+# For 'peer-1' or 'peer-2' profile
+eureka:
+  peer-1:
+    host: eureka-host1
+    port: 9091
+  peer-2:
+    host: eureka-host2
+    port: 9092
+
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        
+---
+spring:
+  profiles: peer-1
+
+# 'peer-1' configuration
+    
+---
+spring:
+  profiles: peer-2
+
+# 'peer-2' configuration

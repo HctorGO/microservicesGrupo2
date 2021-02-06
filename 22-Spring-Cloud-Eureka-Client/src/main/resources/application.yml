@@ -1,0 +1,43 @@
+---
+eureka:
+  context-path: /my-eureka-server
+  peer-1:
+    host: eureka-host1
+    port: 9091
+  peer-2:
+    host: eureka-host2
+    port: 9092
+  single:
+    host: localhost
+    port: 9099
+
+spring:
+  application:
+    name: my-client-app
+
+info:
+  app-name: ${spring.application.name}
+  
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+---
+spring:
+  profiles: client-in-single-eureka
+
+  
+#mvn spring-boot:run -Dspring-boot.run.profiles=client-in-single-eureka -Dspring-boot.run.arguments=--server.port=55991
+
+---
+spring:
+  profiles: client-in-eureka-cluster
+
