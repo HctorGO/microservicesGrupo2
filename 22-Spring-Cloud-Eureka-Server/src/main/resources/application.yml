@@ -24,9 +24,35 @@ spring:
   profiles: peer-1
 
 # 'peer-1' configuration
-    
+   
+eureka:
+  instance:
+    hostname: ${eureka.peer1.host} 
+    appname: ${spring-application.name}-in-cluster
+  client:
+    service-url:
+      defaultZone: http://${eureka.peer-2.host}:${eureka.peer-2.port}${server.servlet.context-path}/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+server:
+  port: ${eureka.peer-1.port} 
+
 ---
 spring:
   profiles: peer-2
 
 # 'peer-2' configuration
+
+eureka:
+  instance:
+    hostname: ${eureka.peer2.host} 
+    appname: ${spring-application.name}-in-cluster
+  client:
+    service-url:
+      defaultZone: http://${eureka.peer-1.host}:${eureka.peer-1.port}${server.servlet.context-path}/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+server:
+  port: ${eureka.peer-2.port} 

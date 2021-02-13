@@ -21,10 +21,10 @@ public class HelloRestController {
 	@Value("${spring.profiles.active}")
 	private String activeProfile;
 
-	@Autowired(required = false)
+	@Autowired
 	private DiscoveryClientHelper discoveryClientHelper;
 
-	@Autowired(required = false)
+	@Autowired
 	private EurekaClientHelper eurekaClientHelper;
 
 	@GetMapping("/hello")

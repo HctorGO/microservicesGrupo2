@@ -1,0 +1,8 @@
+# Spring Cloud Config Client configuration
+spring:
+  cloud:
+    config:
+      uri: http://localhost:9090/my-config-server
+      name: ${spring.application.name}
+      profile: ${spring.profiles.active}
+      label: release1

@@ -1,0 +1,15 @@
+# Spring application properties
+
+spring.application.name=HelloService
+
+server.servlet.context-path=/hello-config-client
+server.port=9091
+
+spring.profiles.active=pre
+
+spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=0c5a2724e4bf5dc072f966491de67079a3c23a120919f87d1e62b4ce2d598c4b
+
+management.endpoints.web.exposure.include=bus-refresh,bus-dev

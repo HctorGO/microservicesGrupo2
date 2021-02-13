@@ -1,0 +1,7 @@
+# Spring application properties
+
+spring: 
+  application:
+    name: HelloService
+  profiles:
+    active: pre

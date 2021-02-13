@@ -17,7 +17,7 @@ spring:
 
 info:
   app-name: ${spring.application.name}
-  
+#${servert.context-path}
 management:
   endpoint:
     health:
@@ -34,10 +34,26 @@ management:
 spring:
   profiles: client-in-single-eureka
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.single.host}:${eureka.single.port}${eureka.context-path}/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   
 #mvn spring-boot:run -Dspring-boot.run.profiles=client-in-single-eureka -Dspring-boot.run.arguments=--server.port=55991
-
+#${spring-application.name}
 ---
 spring:
   profiles: client-in-eureka-cluster
 
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.peer-1.host}:${eureka.peer-1.port}${eureka.context-path}/eureka,http://${eureka.peer-2.host}:${eureka.peer-2.port}${eureka.context-path}/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+server:
+  port: ${PORT:${SERVER_PORT:0}}

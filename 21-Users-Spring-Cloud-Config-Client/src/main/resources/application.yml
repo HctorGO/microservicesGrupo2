@@ -1,0 +1,7 @@
+# Spring application properties
+
+spring: 
+  application:
+    name: UsersService
+  profiles:
+    active: pre
