@@ -1,0 +1,36 @@
+package mx.org.certificatic.springboot.practica25.hystrix.nounmicroservice;
+
+import java.net.URI;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+public class ExclamationMarkServiceClient {
+
+	@Value("${exclamation-mark-microservice.service-name:exclamation-mark-microservice}")
+	private String serviceName;
+
+	@Autowired
+	private RestTemplate restTemplate;
+
+	@SneakyThrows
+	// Define comando Hystrix
+	public String getExclamationMark() {
+		log.info("Requesting {} service...");
+		Thread.sleep(1000);
+		return restTemplate.getForObject(new URI(String.format("http://%s/word", serviceName)), String.class);
+	}
+
+	public String defaultExclamationMark(Throwable ex) {
+		log.info("Fallback method entered, exception {}: {}", ex.getClass().getSimpleName(), ex.getMessage());
+		return "?";
+	}
+
+}
