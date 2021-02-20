@@ -4,11 +4,12 @@ import java.util.Random;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 // Habilita Eureka Client
+@EnableEurekaClient
 @SpringBootApplication
 public class Application {
 
@@ -22,7 +23,7 @@ public class Application {
 	}
 
 	@Bean
-	@LoadBalanced // Definido despues, al hacer la integración con 23-Random-Microservice
+	// Definido despues, al hacer la integración con 23-Random-Microservice
 	public RestTemplate loadBalancedRestTemplate() {
 		return new RestTemplate();
 	}

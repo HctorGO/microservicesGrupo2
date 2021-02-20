@@ -1,5 +1,6 @@
 # For single Eureka instance
 server:
+  host: localhost
   port: 9099
   servlet:
     context-path: /my-eureka-server
@@ -25,4 +26,4 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:${server.port}${server.servlet.context-path}/eureka
+      defaultZone: http://${server.host}:${server.port}${server.servlet.context-path}/eureka

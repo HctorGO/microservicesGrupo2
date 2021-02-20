@@ -40,7 +40,10 @@ eureka:
       defaultZone: http://${eureka.single.host}:${eureka.single.port}${eureka.context-path}/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-  
+
+server:
+  port: ${PORT:${SERVER_PORT:0}}
+
 #mvn spring-boot:run -Dspring-boot.run.profiles=client-in-single-eureka -Dspring-boot.run.arguments=--server.port=55991
 #${spring-application.name}
 ---

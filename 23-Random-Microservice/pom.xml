@@ -23,12 +23,25 @@
 	<dependencies>
 
 		<!-- Agrega dependencia org.springframework.cloud:spring-cloud-starter-netflix-eureka-client -->
-		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
 		<!-- Agrega dependencia org.springframework.cloud:spring-cloud-starter-netflix-ribbon -->
-		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+		</dependency>
 		<!-- Agrega dependencia org.springframework.boot:spring-boot-starter-web -->
-		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 		<!-- Agrega dependencia org.springframework.boot:spring-boot-starter-actuator -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.projectlombok</groupId>

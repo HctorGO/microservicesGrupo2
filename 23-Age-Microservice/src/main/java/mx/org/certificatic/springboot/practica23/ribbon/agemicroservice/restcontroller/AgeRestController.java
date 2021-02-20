@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.org.certificatic.springboot.practica23.ribbon.agemicroservice.MyListener;
-import mx.org.certificatic.springboot.practica23.ribbon.agemicroservice.client.RandomServiceClient;
+import mx.org.certificatic.springboot.practica23.ribbon.agemicroservice.client.RandomService;
+import mx.org.certificatic.springboot.practica23.ribbon.agemicroservice.client.RandomServiceLocalClient;
 
 @Slf4j
 @RestController
 public class AgeRestController {
 
 	@Autowired
-	private RandomServiceClient randomServiceClient;
+	private RandomService randomServiceClient;
 
 	@Autowired
 	private Environment env;
