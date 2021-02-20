@@ -48,6 +48,16 @@ eureka:
     instanceId: ${spring.application.name}:${server.port}:${spring.application.instance_id:${random.value}}
 
 # later... add profile server-1 and server-2 profile configuration...
+---
+spring:
+  profiles: server1
+server:
+  port: 9051 
 
+---
+spring:
+  profiles: server2
+server:
+  port: 9052
 
 #mvn spring-boot:run -Dspring-boot.run.profiles=client-in-single-eureka -Dspring-boot.run.arguments=--server.port=55991

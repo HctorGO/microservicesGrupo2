@@ -4,7 +4,7 @@ spring:
   profiles:
     active:
     # local, ribbon-api o load-balanced-rest-template
-    - load-balanced-rest-template
+    - ribbon-api
 
 server:
   servlet:
