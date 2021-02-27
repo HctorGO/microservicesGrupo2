@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,10 +24,12 @@ public class ExclamationMarkServiceClient {
 	private RestTemplate restTemplate;
 
 	@SneakyThrows
+	@HystrixCommand(fallbackMethod = "defaultExclamationMark")
 	// Define comando Hystrix
+	@HystrixProperty(name = "exclamaBon-mark-microservice" , value = "")
 	public String getExclamationMark() {
 		log.info("Requesting {} service...");
-		Thread.sleep(1000);
+		
 		return restTemplate.getForObject(new URI(String.format("http://%s/word", serviceName)), String.class);
 	}
 

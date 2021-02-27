@@ -37,7 +37,7 @@ management:
 
 turbine:
   #aggregator:
-    #cluster-config: SENTENCE-MICROSERVICE,NOUN-MICROSERVICE
+  #  cluster-config: SENTENCE-MICROSERVICE,NOUN-MICROSERVICE
   app-config: sentence-microservice,noun-microservice
   cluster-name-expression: "'default'"
   
