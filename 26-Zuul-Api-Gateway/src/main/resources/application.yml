@@ -42,7 +42,14 @@ management:
         include: '*'
 
 # Zuul Configuration
-
+zuul:
+  ribbon-isolation-strategy: semaphore
+  ignored-services: uppercase-microservice
+  routes:
+    upper:
+      path: /upper/**
+      service-id: uppercase-microservice
+      strip-prefix: false
 
 logging:
   level:

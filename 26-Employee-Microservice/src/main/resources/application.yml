@@ -45,7 +45,7 @@ feign:
 logging:
   level:
     #org.apache.http: DEBUG 
-    com.consulting.mgt.springboot.practica26.zuul.employeemicroservice.client.IRandomService: DEBUG
+    mx.org.certificatic.springboot.practica26.zuul.employeemicroservice.client: DEBUG
     org.springframework.cloud: INFO
     com.netflix.loadbalancer: OFF
 #mvn spring-boot:run -Dspring-boot.run.profiles=client-in-single-eureka -Dspring-boot.run.arguments=--server.port=55991

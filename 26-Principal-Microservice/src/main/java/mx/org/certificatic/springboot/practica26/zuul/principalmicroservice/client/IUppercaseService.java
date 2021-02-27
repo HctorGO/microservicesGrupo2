@@ -6,8 +6,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "${uppercase-microservice.service-name:uppercase-microservice}", 
-			 path = "${uppercase-microservice.context-path:uppercase-service}")
+@FeignClient(name = "${uppercase-microservice.service-name:uppercase-microservice}")
+			//,  path = "${uppercase-microservice.context-path:uppercase-service}")
 public interface IUppercaseService {
 
 	@GetMapping("/toUppercase/{name}")
